@@ -1,0 +1,26 @@
+{
+  "name": "my-strava-stats",
+  "version": "1.0.0",
+  "description": "Node app that uses Strava API to pull in my personal stats",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwillcox/my-strava-stats.git"
+  },
+  "author": "Michelle Willcox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwillcox/my-strava-stats/issues"
+  },
+  "homepage": "https://github.com/mwillcox/my-strava-stats#readme",
+  "dependencies" : {
+    "body-parser"    : "^1.4.3",
+    "express"        : "^4.13.4",
+    "method-override": "^2.1.3",
+    "mongoose"       : "^4.4.12",
+    "morgan"         : "^1.1.1"
+  }
+}
