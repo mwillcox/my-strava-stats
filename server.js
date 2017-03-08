@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');    // pull information from HTML POST (
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 // configuration =================
-mongoose.connect('mongodb://test:test@ds043262.mlab.com:43262/mwnodetodo');     // connect to mongoDB database on modulus.io
+//mongoose.connect('mongodb://test:test@ds043262.mlab.com:43262/mwnodetodo');     // connect to mongoDB database on modulus.io
 
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
@@ -19,7 +19,27 @@ app.use(methodOverride());
 // routes ======================================================================
 require('./app/routes.js')(app);
 
+mongoose.connect('mongodb://test:test@ds113680.mlab.com:13680/heroku_w92f0qwt', function (err, database) {
+  if (err) {
+    console.log(err);
+    process.exit(1);
+  }
 
-// listen (start app with node server.js) ======================================
-app.listen(8080);
-console.log("App listening on port 8080");
+  // Save database object from the callback for reuse.
+  db = database;
+  console.log("Database connection ready");
+
+  // Initialize the app.
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
+});     
+// connect to mongoDB database on modulus.io
+
+// ACTIVITIES API ROUTES BELOW
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
