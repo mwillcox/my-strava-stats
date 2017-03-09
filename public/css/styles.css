@@ -9,6 +9,17 @@ h1{
   font-family: 'Francois One', sans-serif;
 }
 
+a{
+  color:rgb(255, 140, 0);
+}
+
+header{
+  text-align:center;
+  padding:70px 0px;
+  background-color: black;
+  color: white;
+}
+
 .strava-logo{
   width:124px;
 }
@@ -16,3 +27,43 @@ h1{
 .profile-pic{
   border-radius: 25px;
 }
+
+.stats-container{
+  padding:70px 0px;
+  background-color: rgba(255, 140, 0, 0.6);
+}
+
+.stats{
+  width: 70%;
+  margin:0 auto;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+}
+
+.info-container{
+  padding:70px 0px;
+  background-color: black;
+  color: white;
+}
+
+.info{
+  width: 50%;
+  margin:0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+    body{
+      font-size: 12px;
+    }
+
+    .stats {
+      flex-direction:column;
+      width: 90%;
+    }
+
+    .info{
+      width: 90%;
+    }
+}
+

@@ -19,30 +19,58 @@
   <link href="https://fonts.googleapis.com/css?family=Francois+One|Roboto" rel="stylesheet">
 </head>
 <body ng-controller="mainController">
-  <div class="container">
-    <header class="jumbotron text-center">
-      <div class="icons">
-        <img class="strava-logo" src="https://yellowheadinc.com/wp-content/uploads/2016/10/Android_Strava_Launcher_Icon2x-1.png"/>
-        <img class="profile-pic" src="{{athelete.profile}}"/>
+  <header>
+    <div class="icons">
+      <img class="strava-logo" src="https://yellowheadinc.com/wp-content/uploads/2016/10/Android_Strava_Launcher_Icon2x-1.png"/>
+      <img class="profile-pic" src="{{athelete.profile}}"/>
+    </div>
+    <h1>My Strava Stats</h1>
+    <h3>Rider: {{athelete.firstname}} {{athelete.lastname}}
+    <h3>{{ athelete.city }}, {{ athelete.state }}</h3>  
+  </header>
+  <div class="stats-container">
+    <div class="stats">
+      <div class="ytd">
+        <h3>YTD Ride Totals</h3>
+        <ul>
+          <li>Count: {{ stats.ytd_ride_totals.count}}</li>
+          <li>Distance: {{ stats.ytd_ride_totals.distance }} meters</li>
+          <li>Moving time: {{ stats.ytd_ride_totals.moving_time }} secs</li>
+          <li>Elevation gain: {{ stats.ytd_ride_totals.elevation_gain }} km</li>
+        </ul>
       </div>
-      <h1>My Strava Stats</h1>
-      <h3>Rider: {{athelete.firstname}} {{athelete.lastname}}
-      <h3>{{ athelete.city }}, {{ athelete.state }}</h3>
-    </header>
-    <div class="row">
-      <h3>YTD ride totals</h3>
-      <ul>
-        <li>Count: {{ stats.ytd_ride_totals.count}}</li>
-        <li>Distance: {{ stats.ytd_ride_totals.distance }}</li>
-        <li>Moving time: {{ stats.ytd_ride_totals.moving_time }}</li>
-        <li>Elevation gain: {{ stats.ytd_ride_totals.elevation_gain }}</li>
-      </ul>
-      <h3>Recent Activites</h3>
-      <ul>
-        <li ng-repeat="activity in activities">
-          {{activity.name}} - {{activity.distance}}
-        </li>
-      </ul>
+      <div class="activities">
+        <h3>Most Recent Rides</h3>
+        <ul>
+          <li ng-repeat="activity in activities">
+            {{activity.name}} / Distance: {{activity.distance}} meters
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="info-container">
+    <div class="info">
+      <h3>What's this all about?</h3>
+      <p>This is an app that I created just to demonstrate the usage of the following technologies:
+        <ul>
+          <li>Building a Node server</li>
+          <li>Routing the server side</li>
+          <li>Consuming the service via AngularJS</li>
+          <li>Using a third party API- Strava</li>
+          <li>Deploying to Heroku</li>
+        </ul>
+      </p>
+      <p>**It's a work in progress!** Some other things I would like to implement include:
+        <ul>
+          <li>Creating a service to store the data in a database to improve performance</li>
+          <li>Using D3 to display stats data</li>
+          <li>Using LeafletJS to map the activities</li>
+          <li>Implement the frontend with Angular 2</li>
+        </ul>
+      </p>
+      <br/>
+      <h3>Check out my other work on my <a href="#">website</a> or my <a href="#">github</a>.
     </div>
   </div>
 </body>

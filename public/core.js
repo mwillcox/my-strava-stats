@@ -20,7 +20,7 @@ function mainController($scope, $http) {
 
   $http.get('/api/strava/activities')
     .success(function(data) {
-      $scope.activities = data;
+      $scope.activities = data.slice(0,10);
     })
     .error(function(data) {
       console.log('Error: ' + data);
