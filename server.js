@@ -19,7 +19,7 @@ app.use(methodOverride());
 // routes ======================================================================
 require('./app/routes.js')(app);
 
-mongoose.connect('mongodb://test:test@ds113680.mlab.com:13680/heroku_w92f0qwt', function (err, database) {
+mongoose.connect('mongodb://test:test@ds123410.mlab.com:23410/heroku_nbv000xn', function (err, database) {
   if (err) {
     console.log(err);
     process.exit(1);

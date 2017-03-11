@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var strava = require('strava-v3');
+var Stats = require('./models/stats');
 
 module.exports = function(app){
   app.use(bodyParser.json());
@@ -10,6 +11,14 @@ module.exports = function(app){
       if(err) throw err;
       res.send(stats);
     });
+  });
+
+  app.get('/api/stats', function(req, res){
+     Stats.find({ }, function(err, stats){
+      if(err) throw err;
+
+      res.send(stats);
+     });
   });
 
   app.get('/api/strava/athelete', function(req, res){

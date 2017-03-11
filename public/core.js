@@ -2,9 +2,9 @@ var stravaStats = angular.module('stravaStats', []);
 
 function mainController($scope, $http) {
 
-  $http.get('/api/strava/stats')
+  $http.get('/api/stats')
     .success(function(data) {
-      $scope.stats = data;
+      $scope.stats = data[0];
     })
     .error(function(data) {
       console.log('Error: ' + data);
@@ -21,6 +21,7 @@ function mainController($scope, $http) {
   $http.get('/api/strava/activities')
     .success(function(data) {
       $scope.activities = data.slice(0,10);
+
     })
     .error(function(data) {
       console.log('Error: ' + data);
