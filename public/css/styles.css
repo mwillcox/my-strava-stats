@@ -5,10 +5,6 @@ body{
   margin: 0 auto;
 }
 
-h1{
-  font-family: 'Francois One', sans-serif;
-}
-
 a{
   color:rgb(255, 140, 0);
 }
@@ -20,6 +16,11 @@ header{
   color: white;
 }
 
+header h1{
+  font-family: 'Francois One', sans-serif;
+  font-size: 45px;
+}
+
 .strava-logo{
   width:124px;
 }
@@ -28,17 +29,53 @@ header{
   border-radius: 25px;
 }
 
-.stats-container{
+.ytd-container{
+  text-align: center;
   padding:70px 0px;
   background-color: rgba(255, 140, 0, 0.6);
 }
 
-.stats{
-  width: 70%;
-  margin:0 auto;
-  display:flex;
+.ytd-stats{
+  margin-top: 10px;
+  display: flex;
   flex-direction:row;
-  justify-content:space-around;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.ytd-stats div{
+    margin:30px;
+  }
+
+.ytd-container h1, .activity h1{
+  font-family: 'Passion One', sans-serif;
+}
+
+.ytd-container h2{
+  font-family: 'Francois One', sans-serif;
+}
+
+.activity h2{
+  font-family: 'Francois One', sans-serif;
+  font-size: 26px;
+}
+
+.activity-container{
+  display: flex;
+  flex-wrap:wrap;
+
+}
+.activity-content{
+  width: 50%;
+}
+
+.activity{
+  margin: 50px 0px 0px 50px;
+}
+
+#map { 
+  height:400px;
+  width:50%; 
 }
 
 .info-container{
@@ -54,16 +91,46 @@ header{
 
 @media only screen and (max-width: 500px) {
     body{
-      font-size: 12px;
+      font-size: 14px;
     }
 
-    .stats {
+    .ytd-stats{
+      margin: 5px;
       flex-direction:column;
-      width: 90%;
+    }
+
+    .ytd-stats div{
+      margin:5px;
+    }
+
+    .activity-content{
+      width: 100%;
+    }
+
+    .activity{
+      margin: 40px;
+    }
+
+    #map { 
+      height:300px;
+      width:100%; 
+    }
+
+    .ytd-container h1, .activity h1{
+      font-size:28px;
+    }
+
+    .ytd-container h2, .activity h2{
+      font-size: 20px;
+    }
+
+    .info-container{
+      padding:20px;
     }
 
     .info{
       width: 90%;
     }
+
 }
 

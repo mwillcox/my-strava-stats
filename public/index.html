@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
   <title>Michelle Willcox - Strava Stats</title>
+<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
 
   <!-- SCROLLS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -16,38 +17,38 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
   <script src="core.js"></script>
   <link href='css/styles.css' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Francois+One|Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Francois+One|Roboto|Anton|Passion+One" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+
 </head>
-<body ng-controller="mainController">
+<body ng-controller="mainController" ng-init="onLoad()">
   <header>
     <div class="icons">
       <img class="strava-logo" src="https://yellowheadinc.com/wp-content/uploads/2016/10/Android_Strava_Launcher_Icon2x-1.png"/>
       <img class="profile-pic" src="{{athelete.profile}}"/>
     </div>
     <h1>My Strava Stats</h1>
-    <h3>Rider: <a href="https://www.strava.com/athletes/5390846">{{athelete.firstname}} {{athelete.lastname}}</a>
-    <h3>{{ athelete.city }}, {{ athelete.state }}</h3>  
+    <h3>Rider: <a href="https://www.strava.com/athletes/5390846">Michelle Willcox</a>
+    <h3>San Francisco, CA</h3>  
   </header>
-  <div class="stats-container">
-    <div class="stats">
-      <div class="ytd">
-        <h3>YTD Ride Totals</h3>
-        <ul>
-          <li>Count: {{ stats.ytd_ride_totals.count}}</li>
-          <li>Distance: {{ stats.ytd_ride_totals.distance }} meters</li>
-          <li>Moving time: {{ stats.ytd_ride_totals.moving_time }} secs</li>
-          <li>Elevation gain: {{ stats.ytd_ride_totals.elevation_gain }} km</li>
-        </ul>
-      </div>
-      <div class="activities">
-        <h3>Most Recent Rides</h3>
-        <ul>
-          <li ng-repeat="activity in activities">
-            {{activity.name}} / Distance: {{activity.distance}} meters
-          </li>
-        </ul>
+  <div class="ytd-container">
+    <h1>YTD Ride Totals</h1>
+    <div class="ytd-stats">
+      <div><h2>Count</h2><h3>{{ stats.ytd_ride_totals.count}}</h3></div>
+      <div><h2>Distance</h2><h3>{{ stats.ytd_ride_totals.distance }} meters</h3></div>
+      <div><h2>Moving time</h2><h3>{{ stats.ytd_ride_totals.moving_time }} secs</h3></div>
+      <div><h2>Elevation gain</h2><h3>{{ stats.ytd_ride_totals.elevation_gain }} km</h3></div>
+    </div>
+  </div>
+  <div class="activity-container">
+    <div class="activity-content">
+      <div class="activity">
+        <h1>Most Recent Ride</h1>
+        <h2>Name:</h2><h3>{{activity.name}}</h3> 
+        <h2>Distance:</h2><h3>{{activity.distance}} meters</h3>
       </div>
     </div>
+    <div id='map'></div>
   </div>
   <div class="info-container">
     <div class="info">
@@ -61,7 +62,7 @@
           <li>Deploying to Heroku</li>
         </ul>
       </p>
-      <p>**It's a work in progress!** Some other things I would like to implement include:
+      <p>*It's a work in progress!* Some other things I would like to implement include:
         <ul>
           <li>Creating a service to store the data in a database to improve performance</li>
           <li>Using D3 to display stats data</li>
