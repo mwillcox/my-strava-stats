@@ -8,17 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
   <title>Michelle Willcox - Strava Stats</title>
-<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-
   <!-- SCROLLS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 
   <!-- SPELLS -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0Cjhc2x4uEi6DoHWsch_cnfIwhGtui0&libraries=geometry"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
   <script src="core.js"></script>
   <link href='css/styles.css' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Francois+One|Roboto|Anton|Passion+One" rel="stylesheet">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0Cjhc2x4uEi6DoHWsch_cnfIwhGtui0&libraries=geometry"></script>
+  
 
 </head>
 <body ng-controller="mainController" ng-init="onLoad()">
@@ -40,15 +39,17 @@
       <div><h2>Elevation gain</h2><h3>{{ stats.ytd_ride_totals.elevation_gain }} km</h3></div>
     </div>
   </div>
-  <div class="activity-container">
-    <div class="activity-content">
-      <div class="activity">
-        <h1>Most Recent Ride</h1>
-        <h2>Name:</h2><h3>{{activity.name}}</h3> 
-        <h2>Distance:</h2><h3>{{activity.distance}} meters</h3>
+  <div>
+    <h1>Most Recent Rides</h1>
+    <div class="activity-container" ng-repeat="activity in newActivities" on-finish-render="buildMaps()">
+      <div class="activity-content">
+        <div class="activity">
+          <h2>Name:</h2><h3>{{activity.name}}</h3> 
+          <h2>Distance:</h2><h3>{{activity.distance}} miles</h3>
+        </div>
       </div>
+      <div id='map-{{$index}}'></div>
     </div>
-    <div id='map'></div>
   </div>
   <div class="info-container">
     <div class="info">
