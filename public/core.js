@@ -32,6 +32,8 @@ function mainController($scope, $http) {
     $http.get('/api/stats')
       .success(function(data) {
         $scope.stats = data[0];
+        $scope.stats.ytd_ride_totals.distance = getMiles($scope.stats.ytd_ride_totals.distance).toFixed(2);
+        $scope.stats.ytd_ride_totals.moving_time = Math.floor($scope.stats.ytd_ride_totals.moving_time / 60);
       })
       .error(function(data) {
         console.log('Error: ' + data);
@@ -53,7 +55,7 @@ function mainController($scope, $http) {
     for (var i = 0; i < 5; i++){
       var activity = {
         name: data[i].name,
-        distance: getMiles(data[i].distance),
+        distance: getMiles(data[i].distance).toFixed(2),
         map: data[i].map.summary_polyline
       };
       $scope.newActivities.push(activity);

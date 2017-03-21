@@ -32,20 +32,22 @@
   </header>
   <div class="ytd-container">
     <h1>YTD Ride Totals</h1>
+    <hr>
     <div class="ytd-stats">
       <div><h2>Count</h2><h3>{{ stats.ytd_ride_totals.count}}</h3></div>
-      <div><h2>Distance</h2><h3>{{ stats.ytd_ride_totals.distance }} meters</h3></div>
-      <div><h2>Moving time</h2><h3>{{ stats.ytd_ride_totals.moving_time }} secs</h3></div>
+      <div><h2>Distance</h2><h3>{{ stats.ytd_ride_totals.distance }} miles</h3></div>
+      <div><h2>Moving time</h2><h3>{{ stats.ytd_ride_totals.moving_time }} mins</h3></div>
       <div><h2>Elevation gain</h2><h3>{{ stats.ytd_ride_totals.elevation_gain }} km</h3></div>
     </div>
   </div>
-  <div>
+  <div class="recent-container">
     <h1>Most Recent Rides</h1>
+    <hr>
     <div class="activity-container" ng-repeat="activity in newActivities" on-finish-render="buildMaps()">
-      <div class="activity-content">
+      <div ng-class-odd="'odd'" ng-class-even="'even'" class="activity-content">
         <div class="activity">
-          <h2>Name:</h2><h3>{{activity.name}}</h3> 
-          <h2>Distance:</h2><h3>{{activity.distance}} miles</h3>
+          <h2>Name: {{activity.name}}</h2> 
+          <h2>Distance: {{activity.distance}} miles</h2>
         </div>
       </div>
       <div id='map-{{$index}}'></div>

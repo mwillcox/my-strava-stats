@@ -9,6 +9,12 @@ a{
   color:rgb(255, 140, 0);
 }
 
+hr{
+  border-color:black!important;
+  width: 40%;
+  padding-bottom: 20px;
+}
+
 header{
   text-align:center;
   padding:70px 0px;
@@ -60,10 +66,21 @@ header h1{
   font-size: 26px;
 }
 
+.recent-container{
+  background-color: rgba(255, 140, 0, 0.6);
+}
+
+.recent-container h1{
+  text-align: center;
+  font-family: 'Passion One', sans-serif;
+  padding:40px;
+  margin:0px;
+  
+}
+
 .activity-container{
   display: flex;
   flex-wrap:wrap;
-
 }
 .activity-content{
   width: 50%;
@@ -71,6 +88,10 @@ header h1{
 
 .activity{
   margin: 50px 0px 0px 50px;
+}
+
+.even{
+  background-color: white;
 }
 
 #map, #map-0, #map-1, #map-2, #map-3, #map-4 { 
