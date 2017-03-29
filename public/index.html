@@ -12,6 +12,13 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 
   <!-- SPELLS -->
+  <script src="https://use.fontawesome.com/e075f06003.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0Cjhc2x4uEi6DoHWsch_cnfIwhGtui0&libraries=geometry"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
   <script src="core.js"></script>
@@ -22,37 +29,65 @@
 </head>
 <body ng-controller="mainController" ng-init="onLoad()">
   <header>
-    <div class="icons">
-      <img class="strava-logo" src="https://yellowheadinc.com/wp-content/uploads/2016/10/Android_Strava_Launcher_Icon2x-1.png"/>
-      <img class="profile-pic" src="{{athelete.profile}}"/>
-    </div>
     <h1>My Strava Stats</h1>
-    <h3>Rider: <a href="https://www.strava.com/athletes/5390846">Michelle Willcox</a>
-    <h3>San Francisco, CA</h3>  
+    <div class="icons">
+      <img class="icon" src="./images/strava-logo.png"/>
+      <img class="icon" src="{{athelete.profile}}"/>
+    </div> 
   </header>
   <div class="ytd-container">
     <h1>YTD Ride Totals</h1>
     <hr>
     <div class="ytd-stats">
-      <div><h2>Count</h2><h3>{{ stats.ytd_ride_totals.count}}</h3></div>
-      <div><h2>Distance</h2><h3>{{ stats.ytd_ride_totals.distance }} miles</h3></div>
-      <div><h2>Moving time</h2><h3>{{ stats.ytd_ride_totals.moving_time }} mins</h3></div>
-      <div><h2>Elevation gain</h2><h3>{{ stats.ytd_ride_totals.elevation_gain }} km</h3></div>
+      <div>
+        <p><i class="fa fa-bicycle" aria-hidden="true"></i></p>
+        <h2>Count</h2>
+        <h3>{{ stats.ytd_ride_totals.count}} rides</h3></div>
+      <div>
+        <p><i class="fa fa-map-o" aria-hidden="true"></i></p>
+        <h2>Distance</h2>
+        <h3>{{ stats.ytd_ride_totals.distance }} miles</h3></div>
+      <div>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i></p>
+        <h2>Moving time</h2>
+        <h3>{{ stats.ytd_ride_totals.moving_time }} mins</h3></div>
+      <div>
+        <p><i class="fa fa-area-chart" aria-hidden="true"></i></p>
+        <h2>Elevation gain</h2>
+        <h3>{{ stats.ytd_ride_totals.elevation_gain }} km</h3></div>
     </div>
-  </div>
-  <div class="recent-container">
     <h1>Most Recent Rides</h1>
     <hr>
-    <div class="activity-container" ng-repeat="activity in newActivities" on-finish-render="buildMaps()">
-      <div ng-class-odd="'odd'" ng-class-even="'even'" class="activity-content">
-        <div class="activity">
-          <h2>Name: {{activity.name}}</h2> 
-          <h2>Distance: {{activity.distance}} miles</h2>
-        </div>
-      </div>
-      <div id='map-{{$index}}'></div>
-    </div>
   </div>
+  <div class="recent-container">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators" ng-repeat="activity in newActivities">
+            <li data-target="#carousel-example-generic" data-slide-to="$index" ng-class="{'active': $index == 0}"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox" ng-repeat="activity in newActivities" on-finish-render="buildMaps()">
+          <div class="item" ng-class="{'active': $index == 0}">
+            <div id='map-{{$index}}'></div>
+            <div class="carousel-caption">
+              <div>{{activity.name}}</div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+
   <div class="info-container">
     <div class="info">
       <h3>What's this all about?</h3>
@@ -73,6 +108,7 @@
         </ul>
       </p>
       <br/>
+      <h3>You can find my Strava rider profile here</h3>
       <h3>Check out my other work on my <a href="http://michellewillcox.com/">website</a> or my <a href="https://github.com/mwillcox/">github</a>.
     </div>
   </div>

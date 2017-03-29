@@ -5,44 +5,50 @@ body{
   margin: 0 auto;
 }
 
+i{
+  font-size: 30px!important;
+}
+
 a{
-  color:rgb(255, 140, 0);
+  color:#fc4c02;
 }
 
 hr{
-  border-color:black!important;
-  width: 40%;
-  padding-bottom: 20px;
+  border-color:white!important;
+  width: 30%;
+  padding:10px 0px;
 }
 
 header{
   text-align:center;
   padding:70px 0px;
-  background-color: black;
-  color: white;
+  background-image: url('../images/cartographer.png');
 }
 
 header h1{
   font-family: 'Francois One', sans-serif;
-  font-size: 45px;
+  font-size: 49px;
+  color:white;
 }
 
-.strava-logo{
-  width:124px;
-}
-
-.profile-pic{
+.icon{
+  width:100px;
   border-radius: 25px;
 }
 
 .ytd-container{
   text-align: center;
-  padding:70px 0px;
-  background-color: rgba(255, 140, 0, 0.6);
+  color:white;
+  padding:70px 0px 10px 0px;
+  background: #fc4c02; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left top, #fc4c02, grey); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #fc4c02, grey); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #fc4c02, grey); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #fc4c02, grey); /* Standard syntax */
+
 }
 
 .ytd-stats{
-  margin-top: 10px;
   display: flex;
   flex-direction:row;
   flex-wrap:wrap;
@@ -50,58 +56,27 @@ header h1{
 }
 
 .ytd-stats div{
-    margin:30px;
-  }
+  margin: 30px;
+}
 
 .ytd-container h1, .activity h1{
-  font-family: 'Passion One', sans-serif;
+  font-family: 'Francois One', sans-serif;
+  font-size: 40px;
+  padding-bottom: 25px;
 }
 
 .ytd-container h2{
   font-family: 'Francois One', sans-serif;
 }
 
-.activity h2{
-  font-family: 'Francois One', sans-serif;
-  font-size: 26px;
-}
-
-.recent-container{
-  background-color: rgba(255, 140, 0, 0.6);
-}
-
-.recent-container h1{
-  text-align: center;
-  font-family: 'Passion One', sans-serif;
-  padding:40px;
-  margin:0px;
-  
-}
-
-.activity-container{
-  display: flex;
-  flex-wrap:wrap;
-}
-.activity-content{
-  width: 50%;
-}
-
-.activity{
-  margin: 50px 0px 0px 50px;
-}
-
-.even{
-  background-color: white;
-}
-
 #map, #map-0, #map-1, #map-2, #map-3, #map-4 { 
   height:400px;
-  width:50%; 
+  width:100%; 
 }
 
 .info-container{
   padding:70px 0px;
-  background-color: black;
+  background-image: url('../images/cartographer.png');
   color: white;
 }
 

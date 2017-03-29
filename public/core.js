@@ -74,7 +74,7 @@ function mainController($scope, $http) {
       };
 
       var route;
-       var map = new google.maps.Map(document.getElementById("map-" + i),
+      var map = new google.maps.Map(document.getElementById("map-" + i),
         mapOptions);
 
        // Construct the polygon
