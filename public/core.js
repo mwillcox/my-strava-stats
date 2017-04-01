@@ -17,7 +17,7 @@ var stravaStats = angular.module('stravaStats', [])
 
 function mainController($scope, $http) {
 
-  $scope.newActivities= [];
+  $scope.activities= [];
 
   $scope.onLoad = function(){
     
@@ -41,9 +41,9 @@ function mainController($scope, $http) {
 
     $http.get('/api/strava/activities')
       .success(function(data) {
-        $scope.activity = data[0];
         //populate dynamically
-        buildActivties(data.slice(5));
+        buildActivties(data.slice(4));
+        console.log(data.slice(4));
       })
       .error(function(data) {
         console.log('Error: ' + data);
@@ -52,20 +52,22 @@ function mainController($scope, $http) {
   };
 
   var buildActivties = function(data){
-    for (var i = 0; i < 5; i++){
+    for (var i = 0; i < 4; i++){
+      console.log(Math.floor(data.moving_time / 60));
       var activity = {
         name: data[i].name,
         distance: getMiles(data[i].distance).toFixed(2),
-        map: data[i].map.summary_polyline
+        map: data[i].map.summary_polyline,
+        time: Math.floor(data[i].moving_time / 60)
       };
-      $scope.newActivities.push(activity);
+      $scope.activities.push(activity);
       
     }
-    console.log($scope.newActivities);
+    console.log($scope.activities);
   };
 
   $scope.buildMaps = function(){
-    for (var i = 0; i < $scope.newActivities.length; i++){
+    for (var i = 0; i < $scope.activities.length; i++){
       var myLatLng = new google.maps.LatLng(37.773972, -122.431297);
       var mapOptions = {
         zoom: 12,
@@ -79,7 +81,7 @@ function mainController($scope, $http) {
 
        // Construct the polygon
       route = new google.maps.Polygon({
-        paths: google.maps.geometry.encoding.decodePath($scope.newActivities[i].map),
+        paths: google.maps.geometry.encoding.decodePath($scope.activities[i].map),
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
         strokeWeight: 2,
