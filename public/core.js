@@ -43,7 +43,6 @@ function mainController($scope, $http) {
       .success(function(data) {
         //populate dynamically
         buildActivties(data.slice(4));
-        console.log(data.slice(4));
       })
       .error(function(data) {
         console.log('Error: ' + data);
@@ -53,7 +52,6 @@ function mainController($scope, $http) {
 
   var buildActivties = function(data){
     for (var i = 0; i < 4; i++){
-      console.log(Math.floor(data.moving_time / 60));
       var activity = {
         name: data[i].name,
         distance: getMiles(data[i].distance).toFixed(2),
@@ -61,9 +59,7 @@ function mainController($scope, $http) {
         time: Math.floor(data[i].moving_time / 60)
       };
       $scope.activities.push(activity);
-      
     }
-    console.log($scope.activities);
   };
 
   $scope.buildMaps = function(){

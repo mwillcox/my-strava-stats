@@ -113,20 +113,20 @@ header h1{
     }
 
     .ytd-stats div{
-      margin:5px;
+      margin:10px;
     }
 
-    .activity-content{
-      width: 100%;
+    .recent-container{
+      flex-direction:column;
+      align-items:center;
     }
 
-    .activity{
-      margin: 40px;
+    .activity-container{
+      width: 90%;
     }
 
-    #map { 
-      height:300px;
-      width:100%; 
+    #map, #map-0, #map-1, #map-2, #map-3, #map-4 { 
+      height: 250px;
     }
 
     .ytd-container h1, .activity h1{
