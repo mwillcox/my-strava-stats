@@ -1,1 +1,1 @@
-Node app that uses Strava API to pull in my personal Strava stats
+MEAN stack app that pulls in my personal Strava data through the Strava API.
