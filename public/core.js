@@ -1,5 +1,6 @@
 var stravaStats = angular.module('stravaStats', [])
-  .directive('onFinishRender',['$timeout', '$parse', function ($timeout, $parse) {
+
+.directive('onFinishRender',['$timeout', '$parse', function ($timeout, $parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -20,15 +21,7 @@ function mainController($scope, $http) {
   $scope.activities= [];
 
   $scope.onLoad = function(){
-    
-    $http.get('/api/strava/athelete')
-    .success(function(data) {
-      $scope.athelete = data;
-    })
-    .error(function(data) {
-      console.log('Error: ' + data);
-    });
-    
+    //Grabs stats that are stored in MongoDB
     $http.get('/api/stats')
       .success(function(data) {
         $scope.stats = data[0];
@@ -38,10 +31,9 @@ function mainController($scope, $http) {
       .error(function(data) {
         console.log('Error: ' + data);
     });
-
+    //Grabs activities from Strava API
     $http.get('/api/strava/activities')
       .success(function(data) {
-        //populate dynamically
         buildActivties(data.slice(4));
       })
       .error(function(data) {
@@ -49,7 +41,8 @@ function mainController($scope, $http) {
     });
 
   };
-
+  //Gets fields that we need from activities
+  //TODO: This data modeling should be done on backend
   var buildActivties = function(data){
     for (var i = 0; i < 4; i++){
       var activity = {
@@ -61,7 +54,7 @@ function mainController($scope, $http) {
       $scope.activities.push(activity);
     }
   };
-
+  //Once $scope.activities is populated, generate a map from the activity's polyline
   $scope.buildMaps = function(){
     for (var i = 0; i < $scope.activities.length; i++){
       var myLatLng = new google.maps.LatLng(37.773972, -122.431297);
@@ -90,9 +83,8 @@ function mainController($scope, $http) {
     }
   }
 
-
+  //Converts km to miles
   function getMiles(i) {
      return i*0.000621371192;
   }
-
 }
